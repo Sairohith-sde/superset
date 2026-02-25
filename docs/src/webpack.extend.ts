@@ -101,12 +101,6 @@ export default function webpackExtendPlugin(): Plugin<void> {
 
       return {
         devtool: isDev ? false : config.devtool,
-        cache: {
-          type: 'filesystem',
-          buildDependencies: {
-            config: [__filename],
-          },
-        },
         ...(isDev && {
           optimization: {
             ...config.optimization,

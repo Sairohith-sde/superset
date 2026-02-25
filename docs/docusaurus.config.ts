@@ -166,6 +166,26 @@ if (!versionsConfig.developer_portal.disabled && !versionsConfig.developer_porta
 }
 
 const config: Config = {
+  future: {
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      // Disabled: CSS cascade layers change specificity and cause antd
+      // styles (from Storybook component pages) to override theme styles
+      useCssCascadeLayers: false,
+    },
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      mdxCrossCompilerCache: true,
+      rspackPersistentCache: true,
+      // Disabled: worker threads spawn parallel Node processes that exceed
+      // Netlify's ~8GB memory limit, causing OOM kills (exit code 137)
+      ssgWorkerThreads: false,
+    },
+  },
   title: 'Superset',
   tagline:
     'Apache Superset is a modern data exploration and visualization platform',
